@@ -63,7 +63,7 @@ async def triangular_arbitrage(exchange_name: str) -> Tuple[List[detector.ShortT
     
     return best_opportunities, best_profit
 
-if __name__ == "__main__":
+async def main():
     benchmark = os_util.parse_boolean_environment_var("IS_BENCHMARKING", "False")
     if benchmark:
         start_time = time.perf_counter()
@@ -85,3 +85,7 @@ if __name__ == "__main__":
     if benchmark:
         elapsed_time = time.perf_counter() - start_time
         print(f"{__file__} executed in {elapsed_time:0.2f} seconds.")
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
